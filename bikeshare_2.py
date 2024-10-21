@@ -183,6 +183,7 @@ def user_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
+# chunker to go here
 
 def main():
     while True:
