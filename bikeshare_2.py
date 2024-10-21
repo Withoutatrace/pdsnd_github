@@ -199,19 +199,18 @@ def main():
         trip_duration_stats(df)
         user_stats(df)
 
-        restart = input('\nWould you like to restart? Enter yes or no.\n')
-        if restart.lower() != 'yes':
-            chunk_raw = input('\nWould you like to see the raw data? Enter yes or no.\n')
-            if chunk_raw.lower() != 'yes':
-                break
-            else:
-                for chunk in chunker(df, 5):
-                    print(chunk)
-                    continue_raw = input('\nWould you like to see more? Enter yes or no.\n')
-                    if continue_raw.lower() != 'yes':
-                        print("Exiting the chunker.")
-                        break
-                break
+        chunk_raw = input('\nWould you like to see the raw data? Enter yes or no.\n')
+        if chunk_raw.lower() != 'yes':
+                restart = input('\nWould you like to restart? Enter yes or no.\n')
+                if restart.lower() != 'yes':
+                    break
+        else:
+            for chunk in chunker(df, 5):
+                print(chunk)
+                continue_raw = input('\nWould you like to see more? Enter yes or no.\n')
+                if continue_raw.lower() != 'yes':
+                    print("Exiting the chunker.")
+                    break
 
 
 if __name__ == "__main__":
