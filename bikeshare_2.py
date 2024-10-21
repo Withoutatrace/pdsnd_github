@@ -183,7 +183,11 @@ def user_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
-# chunker to go here
+def chunker(df, size):
+    """An iterator used to parse through the DataFrame at a specified interval."""
+
+    for start in range(0, len(df), size):
+        yield df.iloc[start:start + size]
 
 def main():
     while True:
@@ -197,7 +201,17 @@ def main():
 
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
-            break
+            chunk_raw = input('\nWould you like to see the raw data? Enter yes or no.\n')
+            if chunk_raw.lower() != 'yes':
+                break
+            else:
+                for chunk in chunker(df, 5):
+                    print(chunk)
+                    continue_raw = input('\nWould you like to see more? Enter yes or no.\n')
+                    if continue_raw.lower() != 'yes':
+                        print("Exiting the chunker.")
+                        break
+                break
 
 
 if __name__ == "__main__":
